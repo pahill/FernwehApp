@@ -1,3 +1,5 @@
+//Copied and slightly modified from https://github.com/vinaygaba/Learn-Jetpack-Compose-By-Example, with thanks
+
 package com.pamelaahill.fernwehapp.ui.external
 
 import android.graphics.Bitmap
@@ -22,7 +24,6 @@ import com.squareup.picasso.Target
 
 @Composable
 fun NetworkImagePicasso(url: String) {
-    //TODO (Pamela): Remember to credit!!!!
     // Source code inspired from - https://kotlinlang.slack.com/archives/CJLTWPH7S/p1573002081371500.
     // Made some minor changes to the code Leland posted.
     var image by state<AndroidImageAsset?> { null }
@@ -36,7 +37,6 @@ fun NetworkImagePicasso(url: String) {
             }
 
             override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                println("bitmapfailed because ${e?.message}")
                 drawable = errorDrawable
             }
 
@@ -64,7 +64,6 @@ fun NetworkImagePicasso(url: String) {
     val theImage = image
     val theDrawable = drawable
     if (theImage != null) {
-        println("drawing the image")
         // Box is a predefined convenience composable that allows you to apply common draw & layout
         // logic. In addition we also pass a few modifiers to it.
 
@@ -84,10 +83,6 @@ fun NetworkImagePicasso(url: String) {
             )
         }
     } else if (theDrawable != null) {
-        println("drawing the drawable")
-//            Canvas(modifier = Modifier.fillMaxWidth() + Modifier.preferredHeightIn(maxHeight = 300.dp)) {
-//                theDrawable.draw(nativeCanvas)
-//            }
         Box(
             modifier = Modifier.fillMaxWidth() + Modifier.preferredHeightIn(maxHeight = 300.dp),
             gravity = ContentGravity.Center
@@ -98,6 +93,5 @@ fun NetworkImagePicasso(url: String) {
                 scaleFit = ScaleFit.Fit
             )
         }
-
     }
 }
